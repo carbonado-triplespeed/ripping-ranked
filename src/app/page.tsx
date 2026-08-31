@@ -23,12 +23,12 @@ export default function Home() {
       <header className="hero wrap">
         <span className="eyebrow">The 2026 rip-site rankings</span>
         <h1>
-          Every Pokémon rip site, ranked on <em>what actually comes back</em>.
+          Every Pokémon rip site, <em>ranked</em>.
         </h1>
         <p className="lede">
           We scored the 8 biggest digital pack-opening sites across eight
           collector criteria: buyback rate, card grading, odds transparency,
-          value floor and more. Here is how they rank, best to worst.
+          value floor and more. Here are the rankings.
         </p>
         <div className="stat-row mono">
           <div>
