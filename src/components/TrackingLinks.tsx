@@ -27,7 +27,7 @@ export function TrackingLinks() {
       if (v) fwd.set(k, v);
     });
     if (!fwd.get("utm_source")) {
-      fwd.set("utm_source", "riptiers");
+      fwd.set("utm_source", "riptier");
       fwd.set("utm_medium", "referral");
     }
     if (!fwd.get("utm_campaign")) fwd.set("utm_campaign", "rankings");
