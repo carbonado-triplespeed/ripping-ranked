@@ -1,6 +1,7 @@
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { OperatorCard } from "@/components/OperatorCard";
+import { OperatorRundown } from "@/components/OperatorRundown";
 import { Faq } from "@/components/Faq";
 import { operators } from "@/data/operators";
 import { LAST_UPDATED, faqs } from "@/data/site";
@@ -60,6 +61,27 @@ export default function Home() {
           Scored by the RipTier model across eight collector criteria and
           re-checked weekly. <a href="/methodology">Read the full methodology</a>.
         </p>
+
+        <section className="rundown" aria-label="Full reviews">
+          <div className="rundown-intro">
+            <h2>The reviews, in full</h2>
+            <p>
+              Digital pack-opening has gone from a novelty to a crowded market,
+              and the sites are nowhere near equal. We worked through the eight
+              biggest one by one, checking the things that decide whether you
+              actually keep value: what each pays back for a card you do not
+              want, whether the cards are graded, whether the odds are ever shown,
+              and what real users say once the novelty wears off.
+            </p>
+            <p>
+              Here is the full write-up on every site, best to worst, with what
+              it was like to use and where it falls short.
+            </p>
+          </div>
+          {operators.map((op) => (
+            <OperatorRundown key={op.slug} op={op} />
+          ))}
+        </section>
 
         <Faq />
       </main>
