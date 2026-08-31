@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const links = [
@@ -15,7 +16,8 @@ export function SiteNav() {
     <nav className="nav">
       <div className="nav-in">
         <a className="brand" href="/">
-          <span className="mark">R</span> RipTier
+          <Image className="mark" src="/brand/riptier-mark.png" alt="RipTier" width={30} height={30} priority />
+          RipTier
         </a>
         <div className={`nav-links${open ? " open" : ""}`} id="nav-links">
           {links.map((l) => (

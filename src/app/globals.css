@@ -47,7 +47,7 @@ ul{margin:0;padding:0}
 .nav{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:40}
 .nav-in{position:relative;max-width:1180px;margin:0 auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--stack-display);font-weight:700;letter-spacing:.4px;font-size:19px}
-.brand .mark{width:27px;height:27px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--accent);color:#04211E;font-weight:700;font-size:16px}
+.brand .mark{width:30px;height:30px;object-fit:contain;display:block}
 .nav-links{display:flex;gap:26px;font-size:14px;color:var(--ink-mut)}
 .nav-links a{transition:color .15s}
 .nav-links a:hover{color:var(--ink)}

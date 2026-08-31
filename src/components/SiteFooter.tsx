@@ -1,10 +1,13 @@
+import Image from "next/image";
+
 export function SiteFooter() {
   return (
     <footer className="site">
       <div className="wrap foot-in">
         <div>
           <div className="brand">
-            <span className="mark">R</span> RipTier
+            <Image className="mark" src="/brand/riptier-mark.png" alt="RipTier" width={30} height={30} />
+            RipTier
           </div>
           <p className="disc">
             RipTier independently ranks digital trading-card pack-opening sites

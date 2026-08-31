@@ -40,6 +40,14 @@ export default async function ReviewOpengraphImage({
     }
   }
 
+  let mark: string | null = null;
+  try {
+    const buf = await readFile(join(process.cwd(), "public", "brand", "riptier-mark.png"));
+    mark = `data:image/png;base64,${buf.toString("base64")}`;
+  } catch {
+    mark = null;
+  }
+
   return new ImageResponse(
     (
       <div
@@ -55,23 +63,8 @@ export default async function ReviewOpengraphImage({
         }}
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                borderRadius: "10px",
-                background: "#37C7B8",
-                color: "#04211E",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "30px",
-                fontWeight: 700,
-              }}
-            >
-              R
-            </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+            {mark && <img src={mark} width={50} height={50} />}
             <div style={{ display: "flex", fontSize: "28px", fontWeight: 700, color: "#E9EBF1" }}>
               RipTier
             </div>

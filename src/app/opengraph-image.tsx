@@ -1,10 +1,20 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import { join } from "path";
 
 export const alt = "RipTier — 2026 rip-site rankings";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  let mark: string | null = null;
+  try {
+    const buf = await readFile(join(process.cwd(), "public", "brand", "riptier-mark.png"));
+    mark = `data:image/png;base64,${buf.toString("base64")}`;
+  } catch {
+    mark = null;
+  }
+
   return new ImageResponse(
     (
       <div
@@ -19,23 +29,8 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "12px",
-              background: "#37C7B8",
-              color: "#04211E",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "36px",
-              fontWeight: 700,
-            }}
-          >
-            R
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          {mark && <img src={mark} width={58} height={58} />}
           <div style={{ display: "flex", fontSize: "34px", fontWeight: 700, color: "#E9EBF1", letterSpacing: "1px" }}>
             RipTier
           </div>
