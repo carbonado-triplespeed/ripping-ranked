@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Operator } from "@/data/operators";
 
 export function OperatorCard({ op }: { op: Operator }) {
@@ -6,7 +7,9 @@ export function OperatorCard({ op }: { op: Operator }) {
   return (
     <article className={`op${lead ? " lead" : ""}`}>
       <div className="op-rank">{String(op.rank).padStart(2, "0")}</div>
-      <div className="op-logo" aria-hidden="true">{op.logo}</div>
+      <div className="op-logo">
+        <Image src={op.logo} alt={`${op.name} logo`} width={46} height={46} />
+      </div>
       <div className="op-main">
         <div className="op-nm">
           <span className={`tier t-${op.tier}`}>{op.tier}</span>
