@@ -23,12 +23,12 @@ export default function ContactPage() {
         <div className="contact-methods">
           <div className="cm">
             <span className="cl">General enquiries</span>
-            <a href="mailto:hello@riptier.gg">hello@riptier.gg</a>
+            <a href="mailto:hello@riptiers.com">hello@riptiers.com</a>
             <p>For anything about the site, the rankings or working with us.</p>
           </div>
           <div className="cm">
             <span className="cl">Corrections</span>
-            <a href="mailto:corrections@riptier.gg">corrections@riptier.gg</a>
+            <a href="mailto:corrections@riptiers.com">corrections@riptiers.com</a>
             <p>
               If we have a fact wrong about a site, tell us and we will check it
               and update the score.

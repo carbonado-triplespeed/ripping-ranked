@@ -88,7 +88,7 @@ export default function PrivacyPage() {
             or delete the personal information we hold about you, and to object to
             or limit certain uses, including targeted advertising. To make a
             request, contact us at{" "}
-            <a href="mailto:hello@riptier.gg">hello@riptier.gg</a>.
+            <a href="mailto:hello@riptiers.com">hello@riptiers.com</a>.
           </p>
 
           <h2>Data retention and security</h2>
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
           <h2>Contact</h2>
           <p>
             Questions about this policy can be sent to{" "}
-            <a href="mailto:hello@riptier.gg">hello@riptier.gg</a>.
+            <a href="mailto:hello@riptiers.com">hello@riptiers.com</a>.
           </p>
         </div>
       </div>

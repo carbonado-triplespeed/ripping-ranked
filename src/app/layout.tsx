@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Chakra_Petch, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { CookieBanner } from "@/components/CookieBanner";
 import { BackToTop } from "@/components/BackToTop";
+import { FacebookPixel } from "@/components/FacebookPixel";
+import { TrackingLinks } from "@/components/TrackingLinks";
 import "./globals.css";
 
 const display = Chakra_Petch({
@@ -27,7 +29,7 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "https://riptier.gg");
+    : "https://riptiers.com");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -64,6 +66,8 @@ export default function RootLayout({
         <div id="content">{children}</div>
         <CookieBanner />
         <BackToTop />
+        <TrackingLinks />
+        <FacebookPixel />
       </body>
     </html>
   );

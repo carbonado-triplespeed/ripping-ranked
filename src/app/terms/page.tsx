@@ -108,7 +108,7 @@ export default function TermsPage() {
           <h2>Contact</h2>
           <p>
             Questions about these terms can be sent to{" "}
-            <a href="mailto:hello@riptier.gg">hello@riptier.gg</a>.
+            <a href="mailto:hello@riptiers.com">hello@riptiers.com</a>.
           </p>
         </div>
       </div>
