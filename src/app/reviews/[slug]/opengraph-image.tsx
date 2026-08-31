@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import { join } from "path";
 import { operators, getOperator } from "@/data/operators";
 
 export const alt = "RipTier review";
@@ -27,6 +29,17 @@ export default async function ReviewOpengraphImage({
   const accent = op?.tier === "SS" ? "#E8B93E" : "#37C7B8";
   const tc = tierColor[op?.tier ?? "S"];
 
+  let logoData: string | null = null;
+  if (op) {
+    try {
+      const buf = await readFile(join(process.cwd(), "public", op.logo));
+      const mime = op.logo.endsWith(".png") ? "image/png" : "image/jpeg";
+      logoData = `data:${mime};base64,${buf.toString("base64")}`;
+    } catch {
+      logoData = null;
+    }
+  }
+
   return new ImageResponse(
     (
       <div
@@ -37,33 +50,43 @@ export default async function ReviewOpengraphImage({
           flexDirection: "column",
           justifyContent: "space-between",
           background: "#0A0C11",
-          padding: "70px",
+          padding: "64px 70px",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <div
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "10px",
-              background: "#37C7B8",
-              color: "#04211E",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "30px",
-              fontWeight: 700,
-            }}
-          >
-            R
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div
+              style={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "10px",
+                background: "#37C7B8",
+                color: "#04211E",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "30px",
+                fontWeight: 700,
+              }}
+            >
+              R
+            </div>
+            <div style={{ display: "flex", fontSize: "28px", fontWeight: 700, color: "#E9EBF1" }}>
+              RipTier
+            </div>
+            <div style={{ display: "flex", fontSize: "20px", color: "#646B7E", marginLeft: "6px" }}>
+              review
+            </div>
           </div>
-          <div style={{ display: "flex", fontSize: "28px", fontWeight: 700, color: "#E9EBF1" }}>
-            RipTier
-          </div>
-          <div style={{ display: "flex", fontSize: "20px", color: "#646B7E", marginLeft: "6px" }}>
-            review
-          </div>
+          {logoData && (
+            <img
+              src={logoData}
+              width={116}
+              height={116}
+              style={{ borderRadius: "16px", objectFit: "cover", border: "1px solid #242A3A" }}
+            />
+          )}
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
