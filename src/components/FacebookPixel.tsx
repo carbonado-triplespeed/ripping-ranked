@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1423458099520025";
 
 // Loads the Meta (Facebook) pixel and fires PageView. Does not load if the
 // visitor has explicitly declined cookies, or if no pixel id is configured.
