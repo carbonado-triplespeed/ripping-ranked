@@ -1,9 +1,21 @@
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { OperatorCard } from "@/components/OperatorCard";
+import { Faq } from "@/components/Faq";
 import { operators } from "@/data/operators";
+import { LAST_UPDATED, faqs } from "@/data/site";
 
 export default function Home() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <>
       <SiteNav />
@@ -37,7 +49,7 @@ export default function Home() {
       <main className="rankings wrap">
         <div className="rank-head">
           <h2>The 2026 ranking</h2>
-          <span className="note mono">8 sites · scored out of 10</span>
+          <span className="note mono">Updated {LAST_UPDATED} · scored out of 10</span>
         </div>
         <div className="list">
           {operators.map((op) => (
@@ -48,9 +60,16 @@ export default function Home() {
           Scored by the RipTier model across eight collector criteria and
           re-checked weekly. <a href="/methodology">Read the full methodology</a>.
         </p>
+
+        <Faq />
       </main>
 
       <SiteFooter />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </>
   );
 }

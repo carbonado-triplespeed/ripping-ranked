@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Chakra_Petch, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { CookieBanner } from "@/components/CookieBanner";
+import { BackToTop } from "@/components/BackToTop";
 import "./globals.css";
 
 const display = Chakra_Petch({
@@ -21,8 +23,14 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://riptier.gg");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://riptier.gg"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "RipTier — 2026 rip-site rankings",
     template: "%s — RipTier",
@@ -34,6 +42,13 @@ export const metadata: Metadata = {
     description:
       "Independent rankings of the biggest digital trading-card pack-opening sites, scored across eight collector criteria.",
     type: "website",
+    siteName: "RipTier",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RipTier — 2026 rip-site rankings",
+    description:
+      "Independent rankings of the biggest digital trading-card pack-opening sites, scored across eight collector criteria.",
   },
 };
 
@@ -42,7 +57,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <a className="skip" href="#content">
+          Skip to content
+        </a>
+        <div id="content">{children}</div>
+        <CookieBanner />
+        <BackToTop />
+      </body>
     </html>
   );
 }
