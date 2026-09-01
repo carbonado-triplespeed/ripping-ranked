@@ -4,8 +4,8 @@ import { useEffect } from "react";
 
 // Forward incoming attribution params from the ad click through to the
 // outbound Card Outpost links, and tag them with a default source when none
-// is present. Also fires a Meta "Lead" event on outbound click if the pixel
-// is loaded.
+// is present. Also fires the Meta custom event "RipTierFunnelClick" on
+// outbound click if the pixel is loaded.
 const KEYS = [
   "utm_source",
   "utm_medium",
@@ -43,7 +43,7 @@ export function TrackingLinks() {
           a.dataset.tagged = "1";
           a.addEventListener("click", () => {
             const w = window as unknown as { fbq?: (...args: unknown[]) => void };
-            if (typeof w.fbq === "function") w.fbq("track", "Lead");
+            if (typeof w.fbq === "function") w.fbq("trackCustom", "RipTierFunnelClick");
           });
         } catch {
           // leave the link untouched if it will not parse
