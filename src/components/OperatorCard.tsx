@@ -1,9 +1,9 @@
 import Image from "next/image";
 import type { Operator } from "@/data/operators";
+import { TrackedVisitLink } from "./TrackedVisitLink";
 
 export function OperatorCard({ op }: { op: Operator }) {
   const lead = op.rank === 1;
-  const external = op.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
   return (
     <article className={`op${lead ? " lead" : ""}`}>
       <div className="op-rank">{String(op.rank).padStart(2, "0")}</div>
@@ -38,7 +38,14 @@ export function OperatorCard({ op }: { op: Operator }) {
         <div className="op-meta">{op.meta.join(" · ")}</div>
         <div className="op-cta">
           <a className="btn btn-review" href={`/reviews/${op.slug}`}>Review</a>
-          <a className="btn btn-visit" href={op.url} {...external}>Visit site</a>
+          <TrackedVisitLink
+            className="btn btn-visit"
+            href={op.url}
+            external={op.external}
+            funnel={op.slug === "card-outpost"}
+          >
+            Visit site
+          </TrackedVisitLink>
         </div>
       </div>
     </article>

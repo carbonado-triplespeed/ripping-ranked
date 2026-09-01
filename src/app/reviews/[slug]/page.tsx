@@ -5,6 +5,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { operators, getOperator } from "@/data/operators";
 import { criteria } from "@/data/rubric";
+import { TrackedVisitLink } from "@/components/TrackedVisitLink";
 
 export function generateStaticParams() {
   return operators.map((o) => ({ slug: o.slug }));
@@ -34,7 +35,6 @@ export default async function ReviewPage({
   if (!op) notFound();
 
   const lead = op.rank === 1;
-  const external = op.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   return (
     <>
@@ -72,9 +72,9 @@ export default async function ReviewPage({
             <h2>Our verdict</h2>
             <p>{op.verdict}</p>
             <div className="rev-visit">
-              <a className={`btn-lg${lead ? " gold" : ""}`} href={op.url} {...external}>
-                {op.external ? `Visit ${op.name}` : `More on ${op.name}`}
-              </a>
+              <TrackedVisitLink className={`btn-lg${lead ? " gold" : ""}`} href={op.url} external={op.external}>
+                Visit {op.name}
+              </TrackedVisitLink>
             </div>
 
             <h2 style={{ marginTop: 34 }}>Scorecard</h2>

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import type { Operator } from "@/data/operators";
 import { experiences } from "@/data/experiences";
+import { TrackedVisitLink } from "./TrackedVisitLink";
 
 export function OperatorRundown({ op }: { op: Operator }) {
   const lead = op.rank === 1;
-  const external = op.external ? { target: "_blank", rel: "noopener noreferrer" } : {};
   const experience = experiences[op.slug];
   return (
     <article className={`rd${lead ? " lead" : ""}`}>
@@ -48,9 +48,14 @@ export function OperatorRundown({ op }: { op: Operator }) {
       </div>
 
       <div className="rd-cta">
-        <a className="btn btn-visit" href={op.url} {...external}>
+        <TrackedVisitLink
+          className="btn btn-visit"
+          href={op.url}
+          external={op.external}
+          funnel={op.slug === "card-outpost"}
+        >
           Visit {op.name}
-        </a>
+        </TrackedVisitLink>
         <a className="btn btn-review" href={`/reviews/${op.slug}`}>
           Read the full review
         </a>

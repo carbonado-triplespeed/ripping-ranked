@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { operators } from "@/data/operators";
 
 export const alt = "RipTier — 2026 rip-site rankings";
 export const size = { width: 1200, height: 630 };
@@ -44,7 +45,7 @@ export default async function OpengraphImage() {
             Every Pokémon rip site, ranked.
           </div>
           <div style={{ display: "flex", fontSize: "30px", color: "#98A0B2", marginTop: "6px" }}>
-            8 sites scored on what actually comes back.
+            {operators.length} sites scored on what actually comes back.
           </div>
         </div>
 
