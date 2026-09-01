@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 
-// Forward incoming attribution params from the ad click through to the
-// outbound Card Outpost links, and tag them with a default source when none
-// is present. Also fires the Meta custom event "RipTierFunnelClick" on
-// outbound click if the pixel is loaded.
+// Forwards incoming attribution params from the ad click through to every
+// outbound operator link (any anchor marked data-outbound), and tags a
+// default source when none is present. The Meta funnel event lives on the
+// Card Outpost link itself (see TrackedVisitLink), not here.
 const KEYS = [
   "utm_source",
   "utm_medium",
@@ -33,7 +33,7 @@ export function TrackingLinks() {
     if (!fwd.get("utm_campaign")) fwd.set("utm_campaign", "rankings");
 
     document
-      .querySelectorAll<HTMLAnchorElement>('a[href*="cardoutpost.com"]')
+      .querySelectorAll<HTMLAnchorElement>("a[data-outbound]")
       .forEach((a) => {
         if (a.dataset.tagged) return;
         try {
@@ -41,10 +41,6 @@ export function TrackingLinks() {
           fwd.forEach((v, k) => u.searchParams.set(k, v));
           a.href = u.toString();
           a.dataset.tagged = "1";
-          a.addEventListener("click", () => {
-            const w = window as unknown as { fbq?: (...args: unknown[]) => void };
-            if (typeof w.fbq === "function") w.fbq("trackCustom", "RipTierFunnelClick");
-          });
         } catch {
           // leave the link untouched if it will not parse
         }

@@ -27,13 +27,13 @@ export default function Home() {
           Every Pokémon rip site, <em>ranked</em>.
         </h1>
         <p className="lede">
-          We scored the 8 biggest digital pack-opening sites across eight
-          collector criteria: buyback rate, card grading, odds transparency,
-          value floor and more. Here are the rankings.
+          We scored the {operators.length} biggest digital pack-opening sites
+          across eight collector criteria: buyback rate, card grading, odds
+          transparency, value floor and more. Here are the rankings.
         </p>
         <div className="stat-row mono">
           <div>
-            <b>8</b>
+            <b>{operators.length}</b>
             <span>Sites ranked</span>
           </div>
           <div>
@@ -67,8 +67,9 @@ export default function Home() {
             <h2>The reviews, in full</h2>
             <p>
               Digital pack-opening has gone from a novelty to a crowded market,
-              and the sites are nowhere near equal. We worked through the eight
-              biggest one by one, checking the things that decide whether you
+              and the sites are nowhere near equal. We worked through the{" "}
+              {operators.length} biggest one by one, checking the things that
+              decide whether you
               actually keep value: what each pays back for a card you do not
               want, whether the cards are graded, whether the odds are ever shown,
               and what real users say once the novelty wears off.
